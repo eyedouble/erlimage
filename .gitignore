@@ -4,6 +4,7 @@ ebin/
 !ebin/*.appup
 .eunit/
 .test/
+.vscode/
 *.beam
 deps/
 erl_crash.dump
