@@ -1,0 +1,1 @@
+mingw32-make CXX="gcc -std=c99"

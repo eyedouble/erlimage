@@ -1,0 +1,20 @@
+# Standard Erlang excludesX
+_build/
+ebin/
+!ebin/*.appup
+.eunit/
+.test/
+*.beam
+deps/
+erl_crash.dump
+index.tmp
+prof/
+tmp/
+*.log
+*.lock
+
+# C library
+*.so
+*.dll
+*.a
+*.o

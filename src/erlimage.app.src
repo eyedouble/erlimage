@@ -1,0 +1,17 @@
+{application, erlimage,
+ [{description, "Image processing library implemented as Erlang NIF using FreeImage and Libpngquant."},
+  {vsn, "0.0.1"},
+  {registered, []},
+  {applications,
+   [kernel,
+    stdlib
+   ]},
+  {env,[]},
+  {modules, []},
+  {maintainers, ["Irsan van Wel", "eyedouble"]},
+  {licenses, ["MIT"]},
+  {links, [
+    {"Github", "https://github.com/eyedouble/erlimage"},
+    {"eyedouble", "https://eyedouble.nl"}
+  ]}
+ ]}.
