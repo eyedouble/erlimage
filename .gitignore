@@ -10,8 +10,10 @@ erl_crash.dump
 index.tmp
 prof/
 tmp/
+.vscode/
 *.log
 *.lock
+
 
 # C library
 *.so
