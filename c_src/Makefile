@@ -52,7 +52,7 @@ ifeq ($(OSNAME), Windows)
 else 
 	SLEXT := .so
 	LIBNAME := erlimage_nif$(SLEXT)
-	# COPY := cp libsass/lib/libsass$(SLEXT) ../priv
+	COPY := cp FreeImage/Dist/libfreeimage.a ../priv
 	COPY2 := cp $(LIBNAME) ../priv
 	RM := rm -f
 endif
@@ -68,8 +68,13 @@ CXXFLAGS ?= -O3 -finline-functions -Wall
 #
 #	Compilation
 #
-CFLAGS += -I "$(ERTS_INCLUDE_DIR)" -I "$(ERL_INTERFACE_INCLUDE_DIR)"
-CXXFLAGS += -I "$(ERTS_INCLUDE_DIR)" -I "$(ERL_INTERFACE_INCLUDE_DIR)" -I "FreeImage/Source" "freeimage_win/x64/FreeImage.dll"
+ifeq ($(OSNAME), Windows)
+	CFLAGS += -I "$(ERTS_INCLUDE_DIR)" -I "$(ERL_INTERFACE_INCLUDE_DIR)"
+	CXXFLAGS += -I "$(ERTS_INCLUDE_DIR)" -I "$(ERL_INTERFACE_INCLUDE_DIR)" -I "FreeImage/Source" "freeimage_win/x64/FreeImage.dll"
+else 
+	CFLAGS += -I "$(ERTS_INCLUDE_DIR)" -I "$(ERL_INTERFACE_INCLUDE_DIR)"
+	CXXFLAGS += -I "$(ERTS_INCLUDE_DIR)" -I "$(ERL_INTERFACE_INCLUDE_DIR)" -I "FreeImage/Source" "$(PRIVDIR)/libfreeimage.a"
+endif
 
 
 LDLIBS += -L "$(ERL_INTERFACE_LIB_DIR)" -lerl_interface -lei

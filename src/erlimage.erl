@@ -1,7 +1,9 @@
 -module(erlimage).
 -export([
     load/1 
+    ,x/0
     ,t/0
+    ,z/1
 ]).
 -on_load(init/0).
 
@@ -10,9 +12,17 @@
 -define(APPNAME, erlimage).
 -define(LIBNAME, erlimage_nif).
 
+x() ->
+    Resp = t(),
+    {width, Width,_,_,_,_,_,_,_,_} = Resp,
+    ?PRINT(Width), 
+    z(Resp).
+
 load(_) ->
     not_loaded(?LINE).
 t() ->
+    not_loaded(?LINE).
+z(_) ->
     not_loaded(?LINE).
 
 init() ->
