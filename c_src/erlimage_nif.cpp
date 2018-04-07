@@ -114,7 +114,7 @@ t(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 
     
     FreeImage_Initialise ( );
-    FIBITMAP* dib = FreeImage_Load ( FIF_PNG, "lena.png", 0 );
+    FIBITMAP* dib = FreeImage_Load ( FIF_JPEG, "lena.jpg", 0 );
     dib = FreeImage_ConvertTo32Bits(dib);
 
     int width = FreeImage_GetWidth ( dib );
@@ -236,7 +236,9 @@ z(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
         }
     }
     fclose(f);
-    FreeImage_Save ( FIF_PNG, dib, "AaA.png", 0 );
+
+    dib = FreeImage_ConvertTo24Bits(dib);
+    FreeImage_Save ( FIF_JPEG, dib, "AaA.jpg", 0 );
     /* END TEST */
     
     result = mk_ok( env, FreeImage_GetVersion ( ) );
