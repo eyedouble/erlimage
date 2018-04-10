@@ -4,6 +4,7 @@
     ,x/0
     ,t/0
     ,z/1
+    ,readFile/1
 ]).
 -on_load(init/0).
 
@@ -17,6 +18,9 @@ x() ->
     {width, Width,_,_,_,_,_,_,_,_} = Resp,
     ?PRINT(Width), 
     z(Resp).
+
+readFile (_) -> 
+    not_loaded(?LINE).
 
 load(_) ->
     not_loaded(?LINE).
