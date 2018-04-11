@@ -21,10 +21,29 @@ class Erlimage_Io {
         }
 
         static int 
-        writeJPG ( const char* FilePath, FIBITMAP* Dib, int Quality, bool Progressive ) {
+        writeJpg ( const char* FilePath, FIBITMAP* Dib, int Quality, int Progressive ) {
             Dib = FreeImage_ConvertTo24Bits ( Dib );
-            if ( FreeImage_Save ( FIF_JPEG, Dib, FilePath, (75 | JPEG_PROGRESSIVE) ) )
-                return 0;
+            switch ( Progressive ) {
+                case 0:
+                    if ( FreeImage_Save ( FIF_JPEG, Dib, FilePath, (Quality) ) )
+                        return 0;
+                case 1:
+                    if ( FreeImage_Save ( FIF_JPEG, Dib, FilePath, (Quality | JPEG_PROGRESSIVE) ) )
+                        return 0;
+            };            
+            return 1;
+        }
+
+        static int 
+        writeWebp ( const char* FilePath, FIBITMAP* Dib, int Quality, int Lossless ) {            
+            switch ( Lossless ) {
+                case 0:
+                    if ( FreeImage_Save ( FIF_WEBP, Dib, FilePath, (Quality) ) )
+                        return 0;
+                case 1:
+                    if ( FreeImage_Save ( FIF_WEBP, Dib, FilePath, (Quality | WEBP_LOSSLESS) ) )
+                        return 0;
+            };            
             return 1;
         }
 

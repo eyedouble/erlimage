@@ -32,6 +32,9 @@ class Erlimage_Pixels {
 
             FIBITMAP *dib = FreeImage_Allocate ( inwidth, inheight, inbpp, 
             FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
+
+            if ( !dib )  return Result;
+
             // Calculate the number of bytes per pixel (3 for 24-bit or 4 for 32-bit)
             int bytespp = FreeImage_GetLine(dib) / FreeImage_GetWidth(dib);
             for(unsigned y = 0; y < FreeImage_GetHeight(dib); y++) {
@@ -100,7 +103,8 @@ class Erlimage_Pixels {
                 mk_atom(env, "data"),
                 enif_make_binary ( env, &out )
             );
+            enif_release_binary ( &out );
             return Result;
         }        
 
-}
+};

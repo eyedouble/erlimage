@@ -5,6 +5,10 @@
     ,t/0
     ,z/1
     ,readFile/1
+    ,writeJpg/4
+    ,writeWebp/4
+    ,rescale/3
+    ,rescale/4
 ]).
 -on_load(init/0).
 
@@ -13,21 +17,48 @@
 -define(APPNAME, erlimage).
 -define(LIBNAME, erlimage_nif).
 
-x() ->
-    Resp = t(),
-    {width, Width,_,_,_,_,_,_,_,_} = Resp,
-    ?PRINT(Width), 
-    z(Resp).
+%
+%   I/O
+%
 
+% Filename
 readFile (_) -> 
-    not_loaded(?LINE).
+    not_loaded ( ?LINE ).
 
+% Filename, Data, Quality, Progressive
+writeJpg (_,_,_,_) ->
+    not_loaded ( ?LINE ).
+
+% Filename, Data, Quality, Lossless
+writeWebp (_,_,_,_) ->
+    not_loaded ( ?LINE ).
+
+%
+%   TRANSFORMATIONS
+%
+
+% Data, Width, Height
+rescale(D,W,H) -> 
+    rescale(D,W,H,0).
+% Data, Width, Height, Algorithm
+rescale(_,_,_,_) ->
+    not_loaded ( ?LINE ).
+
+%
+%   DEV
+%
 load(_) ->
     not_loaded(?LINE).
 t() ->
     not_loaded(?LINE).
 z(_) ->
     not_loaded(?LINE).
+
+x() ->
+    Resp = t(),
+    {width, Width,_,_,_,_,_,_,_,_} = Resp,
+    ?PRINT(Width), 
+    z(Resp).
 
 init() ->
     PrivDir = case code:priv_dir(?APPNAME) of

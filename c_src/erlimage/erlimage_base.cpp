@@ -29,7 +29,7 @@ error(ErlNifEnv* env, const char* mesg)
 }
 
 ERL_NIF_TERM 
-response(ErlNifEnv* env, const char* mesg, ERL_NIF_TERM data )
+response(ErlNifEnv* env, ERL_NIF_TERM data )
 {
       ERL_NIF_TERM status = mk_atom(env, "ok");
       return enif_make_tuple2(env, status, data);
