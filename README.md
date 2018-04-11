@@ -4,9 +4,11 @@ Image processing library implemented as Erlang NIF using FreeImage and Libpngqua
 ## Introduction
 
 Erlimage is designed as a read, transform, write workflow.
+The really cool thing about Erlimage is that the actual pixelbuffer  is returned as Binary to Erlang as well as some metadata. 
+
 You read an image file, apply an arbitrary amount of transformations, and lastly write the end result to disk.
 
-Every api call that returns pixel data, the actual image buffer
+
 
 ## Api
 
