@@ -36,7 +36,42 @@ writeJpg ( "test.webp", DataOb, 75, 0 ).
 
 ```
 
+#### writePng/
+Not implemented yet.
+
+#### writeBmp/
+Not implemented yet.
+
+#### writeTiff/
+Not implemented yet.
+
+#### writeGif/
+Not implemented yet.
+
+#### writeBmp/
+Not implemented yet.
+
+#### writeIco/
+Not implemented yet.
+
 ### Transformations
+
+#### adjustBrightness/
+Not implemented yet
+
+#### adjustContrast/
+Not implemented yet
+
+#### adjustCurve/
+Not implemented yet
+
+#### adjustGamma/
+Not implemented yet
+
+#### crop/
+Not implemented yet
+
+
 #### rescale/3,4
 Data object, Width, Height, Algorithm (0-5)
 
@@ -59,3 +94,7 @@ rescale ( DataOb, 500, 500, 0 ).
 > {ok, {witdth, 500, height, 500, pitch, 4, bpp, 32, data, <<0,0,0,...>>}}
 
 ```
+
+#### rotate/2
+DataOb, Degrees
+Not implemented yet
