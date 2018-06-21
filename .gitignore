@@ -20,3 +20,7 @@ tmp/
 *.dll
 *.a
 *.o
+
+# Windows freeimage precompiled
+!c_src/freeimage_win/x32/*.dll
+!c_src/freeimage_win/x64/*.dll
