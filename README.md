@@ -98,3 +98,12 @@ rescale ( DataOb, 500, 500, 0 ).
 #### rotate/2
 DataOb, Degrees
 Not implemented yet
+
+
+### Misc
+#### version/0
+```erlang
+version().
+> {ok, "Erlimage:x.x.x;Y:x.x.x;"}
+
+```
