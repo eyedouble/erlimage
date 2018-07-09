@@ -1,6 +1,7 @@
 -module(erlimage).
 -export([
-    load/1 
+    version/0
+    ,load/1 
     ,x/0
     ,t/0
     ,z/1
@@ -16,6 +17,9 @@
 
 -define(APPNAME, erlimage).
 -define(LIBNAME, erlimage_nif).
+
+version ( ) ->
+    not_loaded ( ?LINE ).
 
 %
 %   I/O
@@ -70,13 +74,16 @@ init() ->
         Dir -> filename:nativename( filename:absname( Dir ) )
     end,
     
-
     case os:type() of
         {win32, _Osname} -> 
             Path = os:getenv("PATH"),
-            os:putenv("PATH", Path ++ PrivDir ++ ";");
+            Path2 = case string:right(Path, 1) of
+                ";" -> Path;
+                _True -> Path ++ ";"
+            end,
+            os:putenv("PATH", Path2 ++ PrivDir ++ ";");
         _True -> ok
-    end,    
+    end,        
 
     SharedLib = filename:join(PrivDir, ?LIBNAME),     
     erlang:load_nif(SharedLib, 0).

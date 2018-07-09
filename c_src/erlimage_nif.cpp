@@ -10,6 +10,16 @@
         READFILE
    ==================== */
 static ERL_NIF_TERM
+version(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
+{
+    ERL_NIF_TERM result;  
+    result = mk_ok(env, "Erlimage:0.0.5-beta;Freeimage:3.17.0;Libimagequant:2.11.10;");
+    return result;
+}
+/* ====================
+        READFILE
+   ==================== */
+static ERL_NIF_TERM
 readFile(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[]) 
 {
     if(argc != 1) return enif_make_badarg(env);    
@@ -178,32 +188,36 @@ rescale(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
     return result;
 }
 
+static int
+load(ErlNifEnv* env, void** priv, ERL_NIF_TERM load_info)
+{
+    return 0;
+}
+
+static int
+upgrade(ErlNifEnv* env, void** priv, void** old_priv, ERL_NIF_TERM load_info)
+{
+    return 0;
+}
+
+static void
+unload(ErlNifEnv* env, void* priv)
+{
+    return;
+}
+
 static ErlNifFunc nif_funcs[] = {
-    {"readFile", 1, readFile}
+    {"version", 0, version}
+    ,{"readFile", 1, readFile}
     ,{"writeJpg", 4, writeJpg}
     ,{"writeWebp", 4, writeWebp}
     ,{"rescale", 4, rescale}    
 };
 
-ERL_NIF_INIT(erlimage, nif_funcs, NULL, NULL, NULL, NULL);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ERL_NIF_INIT(erlimage, nif_funcs, &load, NULL, &upgrade, &unload);
 
 /* ddd 
 #include "erlimage/erlimage.h"
 #include "erlimage/erlimage_base.cpp"
 #include "erlimage/erlimage_io.cpp"
 #include "erlimage/erlimage_pixels.cpp" */
-

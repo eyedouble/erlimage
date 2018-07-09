@@ -1,6 +1,6 @@
 {application, erlimage,
  [{description, "Image processing library implemented as Erlang NIF using FreeImage and Libpngquant."},
-  {vsn, "0.0.1"},
+  {vsn, "0.0.5"},
   {registered, []},
   {applications,
    [kernel,
