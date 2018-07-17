@@ -6,9 +6,6 @@
 #include "erlimage/erlimage_pixels.cpp"
 #include "erlimage/erlimage_transform.cpp"
 
-/* ====================
-        READFILE
-   ==================== */
 static ERL_NIF_TERM
 version(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
@@ -215,6 +212,7 @@ static ErlNifFunc nif_funcs[] = {
 };
 
 ERL_NIF_INIT(erlimage, nif_funcs, &load, NULL, &upgrade, &unload);
+
 
 /* ddd 
 #include "erlimage/erlimage.h"

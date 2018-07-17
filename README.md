@@ -8,6 +8,22 @@ The really cool thing about Erlimage is that the actual pixelbuffer  is returned
 
 You read an image file, apply an arbitrary amount of transformations, and lastly write the end result to disk.
 
+## Known to work on:
+- Ubuntu 17.10
+- Ubuntu 16.04
+- Fedora 27
+- Windows 10 x64 (Compile via MinGW gcc) *See usage on Windows section below*
+
+## Prerequisites
+- gcc
+- g++
+
+*Please note that that Windows is only supported with Erlang/OTP 21.0 and higher. Since this release the folder containing the nif's dll is automatically added to the dll search path (OTP-14666). Erlimage uses this functionality to load it's depencency.*
+
+*Please note on fedora and possibly other linux distro's that use yum as package manger the g++ compiler is called gcc-c++*
+
+## Install
+Add `{erlimage, {git, "https://github.com/eyedouble/erlimage.git", {tag, "X.Y.Z-Z1"}}}` to the `rebar.config` file of your application and add `erlimage` to your `application.src` file. Where X.Y.Z-Z1 is the release tag. See the releases tab for the latest release.
 
 
 ## Api
@@ -107,3 +123,18 @@ version().
 > {ok, "Erlimage:x.x.x;Y:x.x.x;"}
 
 ```
+
+
+
+
+## Usage on Windows 
+To build erlimage on Windows 64bit you need to provide GNU gcc and g++ compilers.
+Follow the steps below:
+
+1. Download  [MinGW64 for Windows 64bit](http://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/mingw-builds/4.9.2/threads-win32/seh/x86_64-4.9.2-release-win32-seh-rt_v3-rev0.7z/download) , and unzip to `C:\mingw64`.
+
+2. Add `C:\mingw64` to your Path environment variable. ( On Windows 10: Open the Start menu, type `environment` in the results click on `Edit environment variables for your account`. Select the `Path` entry and click on `Edit`. )
+
+3. Open CMD or Powershell and execute `gcc --version`. It should show you the gcc version that is present. Do the same for g++. You are now done, please see the section **Install** to continue.
+
+4. Note that the latest version of Erlimage on Windows is only compatible with Erlang/OTP 21 or higher.
