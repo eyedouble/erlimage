@@ -1,9 +1,9 @@
 # Entry point for FreeImage makefiles
 # Default to 'make -f Makefile.gnu' for Linux and for unknown OS. 
 #
-OS ?= $(shell uname)
+OS = $(shell uname)
 MAKEFILE = gnu
-$(info ${OS})
+
 ifeq ($(OS), Darwin)
     MAKEFILE = osx
 endif
@@ -14,9 +14,6 @@ ifeq ($(OS), Solaris)
     MAKEFILE = solaris
 endif
 ifeq ($(OS), windows32)
-    MAKEFILE = mingw
-endif
-ifeq ($(OS), Windows_NT)
     MAKEFILE = mingw
 endif
 
